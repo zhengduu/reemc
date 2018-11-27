@@ -12,6 +12,11 @@
 * of the GNU license.  See the LICENSE file for details.
 */
 
+/*
+ * git: github.com/zhengduu/reemc
+ *
+ */
+
 #include <ros/ros.h>
 #include <tf/transform_listener.h>
 #include <tf/transform_broadcaster.h>
