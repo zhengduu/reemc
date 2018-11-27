@@ -1,0 +1,10 @@
+patch_list:
+ [
+  'p703e.xml',
+  'p706e.xml',
+  'p708e.xml',
+  'p710e.xml',
+  # old sole 'p711e.xml',
+  'p712e.xml',
+ ]
+

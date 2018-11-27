@@ -1,0 +1,8 @@
+patch_list:
+ [
+  'p503e.xml',
+  'p504e.xml',
+  'p505e.xml',
+  'p506e.xml',
+  'p507e.xml',
+ ]

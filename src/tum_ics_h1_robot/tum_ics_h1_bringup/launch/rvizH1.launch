@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<launch>
+
+  <!-- Given the published joint states, publish tf for the robot links -->
+	<node name="$(anon rvizvis)" pkg="rviz" type="rviz" args="-d $(find tum_ics_h1_bringup)/launch/rviz_config/h1_general.rviz" output="screen"/>
+
+</launch>

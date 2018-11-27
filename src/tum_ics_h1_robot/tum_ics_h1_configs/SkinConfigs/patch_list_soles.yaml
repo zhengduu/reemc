@@ -1,0 +1,5 @@
+patch_list:
+ [
+  'p811e.xml',
+  'p711e.xml',
+ ]

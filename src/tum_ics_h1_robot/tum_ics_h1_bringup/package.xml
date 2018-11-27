@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package>
+  <name>tum_ics_h1_bringup</name>
+  <version>0.1.0</version>
+  <description>Modification of reemc_description to add a floating 6DOF base to test RBDL functions and algorithms.</description>
+  <maintainer email="rogelio.guadarrama@tum.de">Rogelio Guadarrama</maintainer>
+  <license>Modified BSD</license>
+  <author email="rogelio.guadarrama@tum.de">Rogelio Guadarrama</author>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <run_depend>tum_ics_h1_description</run_depend>
+  <run_depend>robot_state_publisher</run_depend>
+  <run_depend>joy</run_depend>
+
+
+</package>

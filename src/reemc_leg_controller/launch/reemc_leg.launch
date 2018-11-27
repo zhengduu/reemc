@@ -1,0 +1,18 @@
+<launch>
+<!-- compile with $catkin_make install -->
+
+  <!-- Rviz-->
+  <!--<node name="rviz_vis" pkg="rviz" type="rviz" output="screen"/>-->
+
+  <!-- Start Rosserial Server to receive data from Windows Perception Neuron node-->
+  <!--<node name="rosserial_server" pkg="rosserial_server" type="socket_node" output="screen"/>-->
+
+  <!-- Start Broadcaster that polls data from Rosserial Server and broadcasts it to tf-->
+  <!-- <node name="perc_neuron_tf_broadcaster" pkg="perc_neuron_tf_broadcaster" type="perc_neuron_tf_broadcaster_node" output="screen" /> -->
+
+  <!-- Start reemc_leg_node which receives tf data, calculates path and trajectory for REEM-C's legs and publishes new joint values-->
+  <node name="reemc_leg" pkg="reemc_leg_controller" type="reemc_leg_node" output="screen">
+      <param name="/publishToController" value="false"/> 
+  </node>
+
+</launch>

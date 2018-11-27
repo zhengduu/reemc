@@ -1,0 +1,8 @@
+prefix=/home/duzheng/ros/workspaces/duzheng_test_ws/devel
+
+Name: tum_ics_h1_configs
+Description: Description of tum_ics_h1_configs
+Version: 1.0.0
+Cflags: 
+Libs: -L/home/duzheng/ros/workspaces/duzheng_test_ws/devel/lib 
+Requires: 

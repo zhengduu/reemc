@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+
+<launch>
+
+<arg name="ns" default="/h1" /> <!-- empty strings are not allowed for namespace ! -> "/" -->
+<group ns="$(arg ns)">
+
+    <arg name="model" default="$(find tum_ics_h1_description)/robots/reemc_full_ft_hey5.urdf.xacro" />
+    <arg name="gui" default="false" />
+    <arg name="rate" default="10" />
+  
+    <param name="robot_description" command="$(find xacro)/xacro.py '$(find tum_ics_h1_description)/robots/reemc_full_ft_hey5.urdf.xacro'" />
+    <param name="use_gui" value="$(arg gui)"/>
+    <param name="rate" value="$(arg rate)"/>
+  
+    <!--node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" >	
+        <rosparam param="source_list">[/controller/joint_states]</rosparam>
+    </node-->
+  
+    <node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher"  >
+        <rosparam param="tf_prefix">/h1</rosparam>
+    </node>
+
+</group>
+
+    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find tum_ics_h1_bringup)/launch/rviz_config/h1_test.rviz" required="true" />
+  
+</launch>

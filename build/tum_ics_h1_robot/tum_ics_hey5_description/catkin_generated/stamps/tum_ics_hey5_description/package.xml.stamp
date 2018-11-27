@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<package>
+  <name>tum_ics_hey5_description</name>
+  <version>0.10.4</version>
+  <description>Hey5 hand descriptor customable for testing.</description>
+  <maintainer email="rogelio.guadarrama@tum.de">Rogelio Guadarrama</maintainer>
+  <license>Creative Commons BY-NC-ND 3.0</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <run_depend>xacro</run_depend>
+  <run_depend>pal_transmissions</run_depend>
+</package>

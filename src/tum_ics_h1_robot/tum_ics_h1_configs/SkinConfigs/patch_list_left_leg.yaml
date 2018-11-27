@@ -1,0 +1,16 @@
+patch_list:
+ [
+  'p801e.xml',
+  'p802e.xml',
+  'p803e.xml',
+  'p804e.xml',
+  'p805e.xml',
+  'p806e.xml',
+  'p807e.xml',
+  'p808e.xml',
+  'p809e.xml',
+  'p810e.xml',
+  # old sole 'p811e.xml',
+  'p812e.xml',  
+ ]
+

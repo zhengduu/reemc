@@ -1,0 +1,37 @@
+patch_list:
+ [
+  # left arm
+  'p501e.xml',
+  'p502e.xml',
+  'p503e.xml',
+  'p504e.xml',
+  'p505e.xml',
+  'p506e.xml',
+  'p507e.xml',
+
+  # right arm
+  'p401e.xml',
+  'p402e.xml',
+  'p403e.xml',
+  'p404e.xml',
+  'p405e.xml',
+  'p406e.xml',
+  'p407e.xml',
+
+  # torso
+  'p101e.xml',
+  'p102e.xml',
+  'p103e.xml',
+  'p104e.xml',
+  'p105e.xml',
+  'p106e.xml',
+
+  'p201e.xml',
+  'p202e.xml',
+  
+  'p301e.xml',
+  'p302e.xml',
+  'p303e.xml',
+  'p304e.xml',
+ ]
+

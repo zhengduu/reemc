@@ -1,0 +1,1 @@
+https://askubuntu.com/questions/14558/how-do-i-setup-a-local-ntp-server

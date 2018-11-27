@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package>
+  <name>tum_ics_h1_tools</name>
+  <version>0.0.0</version>
+  <description>This package contains scripts for the H1 robot</description>
+
+  <author email="florian.bergner@tum.de">Florian Bergner</author>
+  <maintainer email="florian.bergner@tum.de">Florian Bergner</maintainer>
+  <url type="website">http://ics.ei.tum.de</url>
+  <license>BSD</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <!-- The export tag contains other, unspecified, tags -->
+  <export>
+    <!-- Other tools can request additional information be placed here -->
+
+  </export>
+</package>

@@ -1,0 +1,18 @@
+patch_list:
+ [
+  'p101e.xml',
+  'p102e.xml',
+  'p103e.xml',
+  'p104e.xml',
+  'p105e.xml',
+  'p106e.xml',
+
+  'p201e.xml',
+  'p202e.xml',
+  
+  'p301e.xml',
+  'p302e.xml',
+  'p303e.xml',
+  'p304e.xml',
+ ]
+

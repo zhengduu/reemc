@@ -1,0 +1,8 @@
+prefix=/home/duzheng/ros/workspaces/duzheng_test_ws/devel
+
+Name: rosserial_server
+Description: Description of rosserial_server
+Version: 0.7.6
+Cflags: -I/home/duzheng/ros/workspaces/duzheng_test_ws/src/rosserial_server/include
+Libs: -L/home/duzheng/ros/workspaces/duzheng_test_ws/devel/lib 
+Requires: roscpp rosserial_msgs topic_tools

@@ -1,0 +1,5 @@
+patch_list:
+ [
+  # old sole 'p811e.xml',
+  'p812e.xml',
+ ]

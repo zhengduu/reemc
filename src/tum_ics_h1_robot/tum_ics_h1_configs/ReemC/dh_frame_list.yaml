@@ -1,0 +1,25 @@
+dh_frame_list:
+ dh_0:
+  id: 20
+  name: 'arm_right_0_dh'
+ dh_1:
+  id: 28
+  name: 'arm_right_1_dh'
+ dh_2:
+  id: 29
+  name: 'arm_right_2_dh'
+ dh_3:
+  id: 30
+  name: 'arm_right_3_dh'
+ dh_4:
+  id: 31
+  name: 'arm_right_4_dh'
+ dh_5:
+  id: 32
+  name: 'arm_right_5_dh'
+ dh_6:
+  id: 33
+  name: 'arm_right_6_dh'
+ dh_7:
+  id: -12
+  name: 'arm_right_7_dh'

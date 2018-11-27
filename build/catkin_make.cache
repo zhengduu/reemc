@@ -1,0 +1,2 @@
+perc_neuron_tf_broadcaster:reemc_arm_controller:reemc_leg_controller:rosserial_server:tum_ics_h1_robot/tum_ics_h1_bringup:tum_ics_h1_robot/tum_ics_h1_configs:tum_ics_h1_robot/tum_ics_h1_description:tum_ics_h1_robot/tum_ics_h1_tools:tum_ics_h1_robot/tum_ics_hey5_description
+-DCATKIN_DEVEL_PREFIX=/home/duzheng/ros/workspaces/duzheng_test_ws/devel -DCMAKE_INSTALL_PREFIX=/home/duzheng/ros/workspaces/duzheng_test_ws/install -G Unix Makefiles

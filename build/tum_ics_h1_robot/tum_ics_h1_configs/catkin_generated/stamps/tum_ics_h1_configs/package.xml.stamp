@@ -1,0 +1,33 @@
+<package>
+  <name>tum_ics_h1_configs</name>
+  <version>1.0.0</version>
+  <description>ROS stack for H1 robot configs, parameters, motions, and special msgs. This package contains all the parameters to control the robot H1</description>
+  <maintainer email="dean@tum.de">Emmanuel Dean</maintainer>
+ 
+
+  <license>BSD</license>
+
+  <url type="website">http://ros.org/wiki/</url>
+  <author>Emmanuel Dean</author>
+  
+
+  <!-- Dependencies which this package needs to build itself. -->
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <!-- Dependencies needed to compile this package. -->
+
+
+  <!-- Dependencies needed after this package is compiled. -->
+  <!--run_depend>allegro_hand_cancomm</run_depend-->
+ 
+
+
+  <!-- Dependencies needed only for running tests. -->
+
+
+
+
+
+
+
+</package>
