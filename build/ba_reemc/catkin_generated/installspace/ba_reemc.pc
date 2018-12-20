@@ -1,8 +1,0 @@
-prefix=/home/duzheng/ros/workspaces/duzheng_test_ws/install
-
-Name: ba_reemc
-Description: Description of ba_reemc
-Version: 0.0.0
-Cflags: 
-Libs: -L/home/duzheng/ros/workspaces/duzheng_test_ws/install/lib 
-Requires: message_runtime
