@@ -133,6 +133,9 @@ struct tfPNInterface {
             transformLeftArm  = transformLeftArm.operator *=(transformArrayLeftArm.at(i));
             transformRightArm = transformRightArm.operator*=(transformArrayRightArm.at(i));
         }
+        // Scale the translational part to fit the lenght of the robot
+        transformLeftArm.getOrigin() = transformLeftArm.getOrigin() * 0.88;
+        transformRightArm.getOrigin() = transformRightArm.getOrigin() * 0.88;
 
         // Get EE's rotation in euler angles
         double roll_left; double pitch_left; double yaw_left;
@@ -195,7 +198,7 @@ struct ik{
     // Inverse kinematics calculation to get desired joint states
     // Check constraints using the SVD
     // Return 0 for success
-    int calcIKJac(tfPNInterface& tfPNIntf, int init,
+    int calcIK(tfPNInterface& tfPNIntf, bool init,
                   // For first iteration x_current and q_current have to be set
                   // with default position of the robot
                   JointVector& currentJointsLeft, JointVector& currentJointsRight){
@@ -247,7 +250,7 @@ struct ik{
         KDL::JntArray q_kdl_right(chain_right.getNrOfJoints());
         KDL::Jacobian jac_kdl_left;
         KDL::Jacobian jac_kdl_right;
-        // Create solvers to get the Jacobians based on the kinematic chains of the arms
+        // Create solvers from kinematic chain to get the Jacobians
         // and the current joint states
         ChainJntToJacSolver jac_solver_left  = ChainJntToJacSolver(chain_left);
         ChainJntToJacSolver jac_solver_right = ChainJntToJacSolver(chain_right);
@@ -262,15 +265,20 @@ struct ik{
                 ChainFkSolverPos_recursive(chain_right);
 
         // ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-        // First start:
-        // Setting values for initializing from robot's parking position
+        // Initializing from default position:
         // Set q_current as last published position or get robot's
         // default values for first iteration
         // X_goal is taken from tfPNInterface
-        q_current_left = currentJointsLeft;
-        q_current_right= currentJointsRight;
-        X_goal_left = tfPNIntf.leftarmPose;
-        X_goal_right= tfPNIntf.rightarmPose;
+        if(init){
+            q_current_left = currentJointsLeft;
+            q_current_right= currentJointsRight;
+        }
+        else{
+            q_current_left = q_goal_left;
+            q_current_right = q_goal_right;
+        }
+            X_goal_left = tfPNIntf.leftarmPose;
+            X_goal_right= tfPNIntf.rightarmPose;
 
         // Copy q_current to q_kdl
         // Use to calculate jac_kdl and X_kdl using FK
@@ -291,14 +299,10 @@ struct ik{
         pos_left.M.GetRPY(r_left, p_left, y_left);
         pos_right.M.GetRPY(r_right, p_right, y_right);
 
-        X_current_left << pos_left.p.x(),
-                          pos_left.p.y(),
-                          pos_left.p.z(),
+        X_current_left << pos_left.p.x(), pos_left.p.y(), pos_left.p.z(),
                           r_left, p_left, y_left;
 
-        X_current_right << pos_right.p.x(),
-                           pos_right.p.y(),
-                           pos_right.p.z(),
+        X_current_right << pos_right.p.x(), pos_right.p.y(), pos_right.p.z(),
                            r_left, p_right, y_right;
 
         // ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -367,22 +371,25 @@ struct ik{
                         q_goal_right(1) << " " << q_goal_right(2) << " " <<
                         q_goal_right(3) << " " << q_goal_right(4) << " " <<
                         q_goal_right(5) << " " << q_goal_right(6) << "\n");
+        */
 
         // Copy q_goal and use it as new q_current for next iteration
         q_current_left  = q_goal_left;
         q_current_right = q_goal_right;
-        */
+
         return 0;
     }
 };
 
 // Publish new joint values to robot
-int publishJointStates(pubIntf& pubIntf, double cycleTime,
-                       JointVector& goalPosLeft, JointVector& goalPosRight,
-                       JointVector& lastPosLeft, JointVector& lastPosRight){
+int publishJointStates(pubIntf& pubIntf, double cycleTime, ik& ik,
+                       JointVector& goalPosLeft, JointVector& goalPosRight){
+                       // JointVector& lastPosLeft, JointVector& lastPosRight){
 
     // ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^    
     // Publish joint states to REEM-C
+    goalPosLeft = ik.q_goal_left;
+    goalPosRight = ik.q_goal_right;
     pubIntf.armJointStateMsg.header.stamp = ros::Time(0);
     pubIntf.armJointStateMsg.position = {
         goalPosLeft(0),  goalPosLeft(1),  goalPosLeft(2),  goalPosLeft(3),
@@ -401,10 +408,12 @@ int publishJointStates(pubIntf& pubIntf, double cycleTime,
                     goalPosRight(2) << " " << goalPosRight(3) << " " <<
                     goalPosRight(4) << " " << goalPosRight(5) << " " <<
                     goalPosRight(6) << "\n");
-
+    /*
+     * Copy last goal position directly in calcIK
     // Copy last published position to use as new current position for next iteration
     lastPosLeft = goalPosLeft;
     lastPosRight= goalPosRight;
+    */
     return 0;
 }
 
@@ -426,8 +435,10 @@ int initializeRobot(ros::NodeHandle& node, pubIntf& pubIntf, tfPNInterface& tfPN
 
     // Set the values for robot's parking position
     // Start IK with default values
-    int init = true;
-    ik.calcIKJac(tfPNIntf, init, defaultJointsLeft, defaultJointsRight);
+    bool init = true;
+    ik.calcIK(tfPNIntf, init, defaultJointsLeft, defaultJointsRight);
+
+
 
     // Take calculated goal joint states and publish them to robot
 
@@ -618,16 +629,16 @@ int main(int argc, char** argv){
             success = tfPNIntf_ref.getTransform();
         }        
         // Calculate goal positions using inverse Jacobian
-        // ik.calcIKJac(tfPNIntf_ref....)
+        // ik.calcIK(tfPNIntf_ref....)
 
         // Publish desired positions to robot
         // Last position is set as new current position for next loop
 
         elapsedTime = ros::Time::now() - begin;
 
-        success = publishJointStates(pubIntf_ref, mainCycleTime,
-                                     ik.q_goal_left, ik.q_goal_right,
-                                     ik.q_current_left, ik.q_current_right);
+        success = publishJointStates(pubIntf_ref, mainCycleTime, ik_ref,
+                                     ik.q_goal_left, ik.q_goal_right);
+                                     // ik.q_current_left, ik.q_current_right);
 
         loopCounter++;
         rate.sleep();
