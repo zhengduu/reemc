@@ -28,8 +28,8 @@
     <child link="Hips"/>
   </joint>   
 
-<!-- added fixed links to map robot base to Hips of PN in simulation     -->
-<!-- rotate base_link to match Hips rotation (-PI/2 -PI/2 0)             -->
+<!-- added fixed links to map robot base to Hips of PN in simulation -->
+<!-- rotate base_link to match Hips rotation (-PI/2 -PI/2 0) -->
   <link name="Hips"/>
 
   <joint name="base_link_TX_joint" type="fixed">

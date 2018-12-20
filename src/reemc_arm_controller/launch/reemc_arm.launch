@@ -12,7 +12,7 @@
 
   <!-- Start reemc_arm_node which receives tf data, calculates path and trajectory for REEM-C's arms and publishes new joint values-->
   <node name="reemc_arm" pkg="reemc_arm_controller" type="reemc_arm_node" output="screen">
-  <!--    <param name="/publishToController" value="false"/> -->
+        <param name="/publishToController" value="false"/>
   </node>
 
 </launch>

@@ -169,7 +169,7 @@ class NeuronBroadcaster {
      pose.setRotation(rotation);
      }
      */
-     //}
+
      // Size of one stamped transform is 152 byte
      tf_broadcaster_.sendTransform(tf::StampedTransform(
          pose, ros::Time(0), link_parents_names_.at(joint_index),
